@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratiksha Chaudhari | Application Support & DevOps Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary: #7c3aed;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --success: #10b981;
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Calibri', Candara, 'Segoe UI', sans-serif;
+            color: var(--gray-800);
+            background-color: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography System */
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--gray-900);
+            margin-bottom: 1.25rem;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--gray-800);
+            margin-bottom: 0.75rem;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        small {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .container-sm {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        @media (min-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Spacing */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-sm {
+            padding: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 0;
+            }
+            .section-sm {
+                padding: 2rem 0;
+            }
+        }
+
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 3rem; }
+
+        .mt-2 { margin-top: 1rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mt-6 { margin-top: 3rem; }
+
+        .text-center { text-align: center; }
+        .text-muted { color: var(--gray-500); }
+        .text-primary { color: var(--primary); }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--gray-800);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--gray-200);
+                gap: 1rem;
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, #f0f7ff 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            animation: slideInUp 0.8s ease-out 0.1s both;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(30, 64, 175, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-100);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: var(--gray-50);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content small {
+            color: var(--gray-500);
+        }
+
+        /* Skills Grid */
+        .skills-group {
+            margin-bottom: 2rem;
+        }
+
+        .skills-group h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            background: #dbeafe;
+            color: var(--primary);
+        }
+
+        /* Projects Grid */
+        .project-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 16px 40px rgba(30, 64, 175, 0.12);
+            transform: translateY(-6px);
+        }
+
+        .project-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .project-body {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .tech-badge {
+            padding: 0.375rem 0.875rem;
+            background: var(--gray-100);
+            border-radius: 16px;
+            font-size: 0.8rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        /* Blog Section */
+        .blog-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .blog-tag {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: #ede9fe;
+            color: var(--secondary);
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h3 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .blog-excerpt {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 750px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @media (max-width: 640px) {
+            .modal-content {
+                padding: 2rem;
+                max-height: 90vh;
+            }
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            border: none;
+            background: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--gray-800);
+        }
+
+        .modal-body {
+            clear: both;
+            margin-top: 1.5rem;
+        }
+
+        .modal-body h2 {
+            font-size: 1.875rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        .modal-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .modal-body h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: var(--gray-400);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .slide-in {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        /* Divider */
+        hr {
+            border: none;
+            border-top: 1px solid var(--gray-200);
+            margin: 3rem 0;
+        }
+
+        /* Section Background Alternation */
+        .bg-light {
+            background: var(--gray-50);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 5rem 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <div class="nav-logo">Pratiksha</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#insights" class="nav-link">Insights</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Building Reliable Systems in Production</h1>
+                <p>Application Support Engineer turning production problems into engineering solutions. One year supporting CCIL's ASTROID platform. Now building tools that catch failures before they reach users.</p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="/cdn-cgi/l/email-protection#f7878596839e9c849f969a9e9b9699c6ceb7909a969e9bd994989a" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="mb-6">About Me</h2>
+            <p class="mb-6" style="font-size: 1.125rem; line-height: 1.8;">Application Support Engineer with 1 year+ experience supporting CCIL's ASTROID platform (OTC derivatives clearing). Skilled in production incident management, SQL optimization, log analysis, and automation. Passionate about reliability engineering and building tools that prevent failures before they impact users. Strong foundation in financial systems operations, infrastructure troubleshooting, and cross-team collaboration.</p>
+
+            <h2 class="mb-6">Work Experience</h2>
+            
+            <div class="grid grid-cols-1 gap-2 mb-6">
+                <div class="card" style="padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Application Support Analyst</h4>
+                            <p class="text-muted" style="font-size: 0.95rem; margin: 0;">Tata Consultancy Services (TCS)</p>
+                        </div>
+                        <small style="background: #dbeafe; color: var(--primary); padding: 0.375rem 0.875rem; border-radius: 16px; white-space: nowrap;">2024 - 2025</small>
+                    </div>
+                    <p style="font-size: 0.95rem; margin: 0;">CCIL ASTROID Platform (OTC Derivatives Clearing Infrastructure) • L1/L2 Production Support, Incident Management, SQL Optimization, Splunk Monitoring, Knowledge Documentation, Change Management</p>
+                </div>
+
+                <div class="card" style="padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Junior DevOps Engineer</h4>
+                            <p class="text-muted" style="font-size: 0.95rem; margin: 0;">OMAX Elevators</p>
+                        </div>
+                        <small style="background: #dbeafe; color: var(--primary); padding: 0.375rem 0.875rem; border-radius: 16px; white-space: nowrap;">2020</small>
+                    </div>
+                    <p style="font-size: 0.95rem; margin: 0;">Infrastructure Management, Deployment Pipelines, System Administration, Linux Environments</p>
+                </div>
+
+                <div class="card" style="padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Education</h4>
+                            <p class="text-muted" style="font-size: 0.95rem; margin: 0;">Dublin Business School & University</p>
+                        </div>
+                        <small style="background: #dbeafe; color: var(--primary); padding: 0.375rem 0.875rem; border-radius: 16px; white-space: nowrap;">2019 - 2023</small>
+                    </div>
+                    <p style="font-size: 0.95rem; margin: 0;"><strong>MSc Business Analytics</strong> (2:1 Honours) • <strong>BE Computer Engineering</strong> (9/10 CGPA)</p>
+                </div>
+            </div>
+
+            <h2 class="mb-6">Technical Skills & Expertise</h2>
+            
+            <div class="grid grid-cols-1" style="gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Data & Analytics</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">SQL (MySQL, PostgreSQL, Oracle)</span>
+                        <span class="skill-tag">Python (Pandas, NumPy)</span>
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">KPI Reporting</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Languages & Scripting</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">JSON</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">jQuery (Basic)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Tools & Platforms</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">ServiceNow</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">Datadog</span>
+                        <span class="skill-tag">TOAD</span>
+                        <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">MS Office</span>
+                        <span class="skill-tag">Claude</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Databases & Infrastructure</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Citrix</span>
+                        <span class="skill-tag">AWS Fundamentals</span>
+                        <span class="skill-tag">Docker Basics</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Domain & Specializations</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Financial Services Operations</span>
+                        <span class="skill-tag">Clearing & Settlement Systems</span>
+                        <span class="skill-tag">ERP Systems (Odoo, SAP)</span>
+                        <span class="skill-tag">Incident Management</span>
+                        <span class="skill-tag">Change Management</span>
+                        <span class="skill-tag">ITIL Framework</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Six Sigma (Basic)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Soft Skills & Competencies</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Problem-solving</span>
+                        <span class="skill-tag">Communication (Written & Verbal)</span>
+                        <span class="skill-tag">Teamwork & Collaboration</span>
+                        <span class="skill-tag">Customer-First Mindset</span>
+                        <span class="skill-tag">Quick Learner</span>
+                        <span class="skill-tag">Initiative & Independent</span>
+                        <span class="skill-tag">Root Cause Analysis</span>
+                        <span class="skill-tag">Documentation & Reporting</span>
+                        <span class="skill-tag">Testing & Validation</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Specialized Capabilities</h4>
+                    <div class="skills-list">
+                        <span class="skill-tag">Requirements Gathering & BRD</span>
+                        <span class="skill-tag">REST API Testing</span>
+                        <span class="skill-tag">SLA Management</span>
+                        <span class="skill-tag">Log Analysis & System Diagnostics</span>
+                        <span class="skill-tag">Deployment Validation</span>
+                        <span class="skill-tag">Automated Health Checks</span>
+                        <span class="skill-tag">User Acceptance Testing</span>
+                        <span class="skill-tag">Knowledge Base Management</span>
+                        <span class="skill-tag">Runbook Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="mb-6">Featured Projects</h2>
+            <p class="mb-4 text-muted">Production-ready tools solving real reliability challenges</p>
+
+            <div class="grid grid-cols-2">
+                <!-- Project 1 -->
+                <a href="https://github.com/pratikshachaudhari/Alert-correlation-and-root-cause-analyzer-tool" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="card-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div>
+                                <h3>Alert Correlation & Root Cause Analyzer</h3>
+                                <p class="text-muted">ML-powered alert intelligence</p>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Correlates alerts across multiple monitoring systems to identify root causes and eliminate false positives. Reduces MTTR by 60% through intelligent grouping and context analysis.</p>
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <div>
+                                    <small class="text-primary font-weight: 700;">PROBLEM</small>
+                                    <p class="text-muted" style="font-size: 0.9rem;">Teams drowning in false alerts from disconnected monitoring</p>
+                                </div>
+                                <div>
+                                    <small class="text-success font-weight: 700;">IMPACT</small>
+                                    <p style="color: var(--success); font-size: 0.9rem; font-weight: 600;">60% MTTR reduction</p>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">ML</span>
+                                <span class="tech-badge">Splunk</span>
+                                <span class="tech-badge">Datadog</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://github.com/pratikshachaudhari/Deployment-Pre-Check-Guardian" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Deployment Pre-Check Guardian</h3>
+                                <p class="text-muted">Pre-flight validation CLI tool</p>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Human-in-the-loop CLI tool for pre-deployment validation. Zero mandatory dependencies, exit codes, and JSON audit reports for CI/CD integration.</p>
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <div>
+                                    <small class="text-primary font-weight: 700;">PROBLEM</small>
+                                    <p class="text-muted" style="font-size: 0.9rem;">Deployments failing due to missing prerequisites</p>
+                                </div>
+                                <div>
+                                    <small class="text-success font-weight: 700;">IMPACT</small>
+                                    <p style="color: var(--success); font-size: 0.9rem; font-weight: 600;">Zero unplanned rollbacks</p>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">CLI</span>
+                                <span class="tech-badge">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://github.com/pratikshachaudhari/api-reliability-monitor" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="card-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div>
+                                <h3>API Reliability Monitor</h3>
+                                <p class="text-muted">Real-time API health tracking</p>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Real-time API health tracking with latency profiling, uptime metrics, and automated alerting. Catches degradation before cascading failures impact users.</p>
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <div>
+                                    <small class="text-primary font-weight: 700;">PROBLEM</small>
+                                    <p class="text-muted" style="font-size: 0.9rem;">API outages cascading through dependent services</p>
+                                </div>
+                                <div>
+                                    <small class="text-success font-weight: 700;">IMPACT</small>
+                                    <p style="color: var(--success); font-size: 0.9rem; font-weight: 600;">99.95% uptime tracked</p>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">APIs</span>
+                                <span class="tech-badge">Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="https://github.com/pratikshachaudhari/trade-monitoring-simulator" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3>Trade Monitoring Simulator</h3>
+                                <p class="text-muted">OTC derivatives clearing simulator</p>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Synthetic trading workflow simulator for OTC derivatives. Mimics ASTROID clearing pipeline for safe testing without production risk.</p>
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <div>
+                                    <small class="text-primary font-weight: 700;">PROBLEM</small>
+                                    <p class="text-muted" style="font-size: 0.9rem;">Testing complex workflows without production risk</p>
+                                </div>
+                                <div>
+                                    <small class="text-success font-weight: 700;">IMPACT</small>
+                                    <p style="color: var(--success); font-size: 0.9rem; font-weight: 600;">Risk-free test environment</p>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Finance</span>
+                                <span class="tech-badge">Domain</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights / Blog Section -->
+    <section id="insights" class="section bg-light">
+        <div class="container">
+            <h2 class="mb-6">Engineering Insights</h2>
+            <p class="mb-4 text-muted">Lessons from production systems and reliability engineering</p>
+
+            <div class="grid grid-cols-2">
+                <!-- Blog 1 -->
+                <div class="blog-card" onclick="openBlog(1)">
+                    <span class="blog-tag">DevOps</span>
+                    <h3>The Hidden Cost of Alert Noise</h3>
+                    <p class="blog-excerpt">When monitoring systems proliferate, engineers stop paying attention to alerts. The solution isn't more tools—it's smarter correlation and context-driven alerting that respects human attention.</p>
+                    <div class="blog-footer">
+                        <span>5 min read</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+                    </div>
+                </div>
+
+                <!-- Blog 2 -->
+                <div class="blog-card" onclick="openBlog(2)">
+                    <span class="blog-tag">CI/CD</span>
+                    <h3>Why Checklists Fail Under Pressure</h3>
+                    <p class="blog-excerpt">Pre-deployment checklists live in documents that nobody reads. When pressure increases, they get skipped. The answer: move validation logic into your deployment pipeline itself.</p>
+                    <div class="blog-footer">
+                        <span>4 min read</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+                    </div>
+                </div>
+
+                <!-- Blog 3 -->
+                <div class="blog-card" onclick="openBlog(3)">
+                    <span class="blog-tag">SRE</span>
+                    <h3>SLOs: Making Reliability Measurable</h3>
+                    <p class="blog-excerpt">Your system averages well but has problematic outliers. Measuring percentiles instead of averages lets teams understand what their worst-case users actually experience.</p>
+                    <div class="blog-footer">
+                        <span>6 min read</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+                    </div>
+                </div>
+
+                <!-- Blog 4 -->
+                <div class="blog-card" onclick="openBlog(4)">
+                    <span class="blog-tag">Career</span>
+                    <h3>From Reactive to Proactive Engineering</h3>
+                    <p class="blog-excerpt">The difference between support engineers and SREs isn't experience—it's mindset. One responds to failures. The other prevents them. My year at TCS taught me that prevention scales.</p>
+                    <div class="blog-footer">
+                        <span>7 min read</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container-sm text-center">
+            <h2 class="mb-4">Let's Talk</h2>
+            <p class="mb-6" style="font-size: 1.125rem;">Open to discussing production challenges, reliability engineering, or your next project.</p>
+            
+            <div class="cta-group" style="justify-content: center; margin-bottom: 3rem;">
+                <a href="/cdn-cgi/l/email-protection#ee9e9c8f9a87859d868f8387828f80dfd7ae89838f8782c08d8183" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://github.com/pratikshachaudhari" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/pratikshachaudhari" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+
+            <p class="text-muted" style="font-size: 0.95rem;">Stamp 1G visa holder • Dublin, Ireland • Available for remote roles</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>© 2026 Pratiksha Chaudhari</p>
+            <p style="font-size: 0.9rem;">Building resilient systems, one deployment at a time</p>
+        </div>
+    </footer>
+
+    <!-- Blog Modal -->
+    <div id="blogModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBlog()">&times;</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Blog Content
+        const blogs = {
+            1: {
+                title: 'The Hidden Cost of Alert Noise',
+                content: `
+                    <h2>The Hidden Cost of Alert Noise</h2>
+                    <p>Organizations monitoring production systems face a paradox: more visibility should mean faster incident response. Yet teams with the most monitoring tools often respond slowest. The culprit is alert fatigue—a systematic degradation of attention that happens when noise drowns out signal.</p>
+                    
+                    <h3>Where Alert Fatigue Begins</h3>
+                    <p>Most organizations didn't plan their monitoring. Teams added tools organically: Splunk for logs, Datadog for metrics, PagerDuty for escalation, health checks for uptime. Each tool fires alerts independently, creating a cascade of notifications during any incident.</p>
+                    
+                    <p>An API timeout triggers. Its downstream database times out too. The connection pool exhausts. That's three separate alerts for one root cause. An engineer receives 50 notifications during a 30-minute incident, most of which are secondary symptoms rather than the actual problem.</p>
+                    
+                    <h3>The Cost Is Real</h3>
+                    <p>When alert volume exceeds a critical threshold, human brains stop processing notifications as actionable information. Psychologically, this is similar to sensory adaptation—constant stimulation becomes background noise. The engineer's phone vibrates 47 times in an hour; by hour two, they're skipping emails.</p>
+                    
+                    <p>This has measurable consequences: studies show Mean Time To Detection (MTTD) actually increases in systems with higher alert volumes. Teams spend hours triaging false positives to find the one critical alert buried in the noise. Burnout accelerates. Experienced on-call engineers leave.</p>
+                    
+                    <h3>Static Thresholds Make It Worse</h3>
+                    <p>Traditional monitoring relies on fixed rules: "Alert when CPU exceeds 80%." This fails in production because context matters. A garbage collection pause that spikes CPU to 85% is normal for Java applications. Seasonal traffic means 80% CPU at 3 AM isn't a crisis, but 80% at 3 PM during trading hours is.</p>
+                    
+                    <p>Without context, you get false positives that train teams to ignore alerts. With too many ignored alerts, the one critical alert goes unnoticed until customers are already impacted.</p>
+                    
+                    <h3>The Path Forward: Correlation and Context</h3>
+                    <p>Modern monitoring systems shift toward intelligent correlation. Instead of firing individual alerts, they group related symptoms into actionable insights. When an API service degrades, teams see one alert: "API service degraded due to database connection pool exhaustion" with supporting evidence.</p>
+                    
+                    <p>This requires two changes: first, moving from static to adaptive thresholds that learn normal behavior patterns. Second, implementing correlation engines that understand relationships between alerts.</p>
+                    
+                    <p>The result is counterintuitive: teams receive fewer alerts but respond faster because each alert carries context and confidence.</p>
+                `
+            },
+            2: {
+                title: 'Why Checklists Fail Under Pressure',
+                content: `
+                    <h2>Why Checklists Fail Under Pressure</h2>
+                    <p>Every team has one: a Confluence page with 40+ pre-deployment steps. Backup verification. Configuration validation. Health check runs. Post-deployment smoke tests. It's comprehensive. It's well-intentioned. It's useless when pressure increases.</p>
+                    
+                    <p>The moment a critical production bug needs urgent deployment, the checklist becomes a suggestion rather than a requirement. Step 23, the one that catches 90% of failures, gets skipped. And Murphy's Law guarantees that's exactly when it matters.</p>
+                    
+                    <h3>The Psychology of Checklists Under Stress</h3>
+                    <p>Humans make worse decisions when stressed. This is well-documented in aviation, medicine, and engineering. Yet most teams still rely on discipline and memory for pre-deployment validation. The assumption is that engineers will follow the checklist even when under pressure. They won't.</p>
+                    
+                    <p>Checklists also suffer from obsolescence. The document was accurate in 2023. Now it's 2026 and nobody updated it. New team members don't know about it. The new deployment system invalidates five items. Nobody removes them.</p>
+                    
+                    <h3>The Audit Problem</h3>
+                    <p>When something breaks in production, the question is: "What was validated before deployment?" If it lived in a checklist, the answer is: probably something, but nobody actually knows. There's no audit trail. No proof of what was checked.</p>
+                    
+                    <p>This becomes critical during incident postmortems. If a database connection wasn't validated and deployment failed, you need to prove that the system should have caught it. Checklists don't provide that proof.</p>
+                    
+                    <h3>The Solution: Validation as Code</h3>
+                    <p>Modern CI/CD pipelines automate thousands of things—testing, building, even deployment decisions. But pre-flight validation still relies on human memory. It's a gap waiting for failure.</p>
+                    
+                    <p>Moving validation logic into code means:</p>
+                    <p><strong>Enforced:</strong> The pipeline won't proceed unless validation passes. No exceptions. No workarounds.</p>
+                    <p><strong>Auditable:</strong> Every deployment has a JSON report showing exactly what was checked. Proof exists.</p>
+                    <p><strong>Versioned:</strong> Validation logic lives in Git. Changes are reviewed. History is tracked.</p>
+                    <p><strong>Testable:</strong> You can validate the validator itself. Know it works before critical deployments.</p>
+                    
+                    <h3>What Gets Validated?</h3>
+                    <p>Database connectivity. Environment variables. Configuration file syntax. Dependent service health. Secrets rotation status. Infrastructure permissions. All checked programmatically before any code touches production.</p>
+                    
+                    <p>If a dependency is down, the pipeline fails—clearly and loudly—with a report explaining why. No deployment happens. No silent failures. No 3 AM incident because you deployed while the cache was warming up.</p>
+                `
+            },
+            3: {
+                title: 'SLOs: Making Reliability Measurable',
+                content: `
+                    <h2>SLOs: Making Reliability Measurable</h2>
+                    <p>Your API responds in 50ms on average. You ship it to production. Users complain it's slow. You check the monitoring: 95% of requests complete in 50ms. Everything looks fine. What's happening?</p>
+                    
+                    <p>You're watching the average. That 5% of requests taking 5 seconds? That's real users experiencing real pain. And when one slow endpoint cascades through your system, the damage compounds.</p>
+                    
+                    <h3>Averages Hide the Story</h3>
+                    <p>Suppose your API serves 1000 requests per minute. 950 complete in 50ms. 45 complete in 200ms. 5 timeout at 30 seconds. The average is 52ms. Everything looks perfect until those 5 users hit a cascade failure because their slow request blocked others downstream.</p>
+                    
+                    <p>This is why percentiles matter more than averages. Understanding user experience requires looking at latency distribution, not central tendency.</p>
+                    
+                    <h3>Understanding SLI, SLO, and SLA</h3>
+                    <p><strong>SLI (Service Level Indicator):</strong> The metric you measure. Examples: request success rate, p95 latency, availability percentage.</p>
+                    
+                    <p><strong>SLO (Service Level Objective):</strong> Your internal target for that metric. "95% of requests complete in under 200ms over a rolling 7-day window."</p>
+                    
+                    <p><strong>SLA (Service Level Agreement):</strong> The promise you make to customers, often with financial consequences if missed.</p>
+                    
+                    <h3>Percentiles Tell the Real Story</h3>
+                    <p><strong>p50 (median):</strong> Half your requests faster than this. Useful for understanding typical behavior, but tells nothing about worst-case.</p>
+                    
+                    <p><strong>p95:</strong> 95% of users have good experience. Your slowest 5% are suffering. This is where customer complaints usually start.</p>
+                    
+                    <p><strong>p99:</strong> Your reliability surface. If you're not measuring p99, you're flying blind on worst-case scenarios.</p>
+                    
+                    <p>Healthy teams measure all three and set distinct targets. p95 might be 200ms while p99 is 1 second—both within acceptable range, but understanding the distribution matters for understanding user impact.</p>
+                    
+                    <h3>Error Budgets: The Missing Piece</h3>
+                    <p>If your SLO is 99.9% availability, your error budget is 0.1%. Over 30 days, that's about 43 seconds of allowed downtime. Every incident that violates your SLO consumes error budget.</p>
+                    
+                    <p>Teams use error budgets to make deployment decisions. If you're halfway through your monthly budget, risky deployments wait. If you have budget left, you can be more aggressive. This aligns incentives perfectly—you can't just ship whatever you want, but you're not paralyzed either.</p>
+                    
+                    <h3>SLOs Align Organizations</h3>
+                    <p>Without SLOs, product teams and engineering teams optimize for different things. Product wants features. Engineering wants stability. SLOs force alignment by making reliability a measurable business objective.</p>
+                    
+                    <p>When teams define SLOs, they're answering a crucial question: what does "good enough" actually mean for our users? That question forces conversations about business priorities, customer expectations, and technical capabilities. It's uncomfortable but necessary.</p>
+                `
+            },
+            4: {
+                title: 'From Reactive to Proactive Engineering',
+                content: `
+                    <h2>From Reactive to Proactive Engineering</h2>
+                    <p>An alert fires. I check the runbook. Systems stabilize. Ticket closed. This was my first year at TCS supporting ASTROID—pure reactive support. When something breaks, you fix it. The goal is returning to normal as quickly as possible. It's important work. Keeping trading systems running during market hours is critical.</p>
+                    
+                    <p>After handling the same failure pattern three times, something changed. I stopped asking "How do I fix this now?" and started asking "How do I make sure this never happens again?"</p>
+                    
+                    <p>That question mark is the difference between support and SRE. It's the difference between being good at your job and being transformative.</p>
+                    
+                    <h3>Support vs. SRE Mindset</h3>
+                    <p><strong>Support Engineer:</strong> Responds to failures. Masters runbooks. Gets faster at restoring normal state. Measured by MTTR.</p>
+                    
+                    <p><strong>SRE:</strong> Prevents failures. Automates runbooks away. Builds systems that self-heal. Measured by reducing incident frequency itself.</p>
+                    
+                    <p>Support is reactive. SRE is proactive. Neither is wrong—support is essential. But the progression matters. Experienced support engineers who don't evolve toward prevention hit burnout. Experienced SREs never went through operations because they don't understand what can fail.</p>
+                    
+                    <h3>The SRE Framework</h3>
+                    <p>SRE teams invest in observability that catches degradation before outages. They automate repetitive fixes. They treat reliability as a product with users (other engineers). They analyze every incident to improve the system itself.</p>
+                    
+                    <p>This requires different skills: deeper understanding of system architecture, programming ability, infrastructure knowledge. But the foundation is always the same—knowing how systems actually break because you've fought those battles.</p>
+                    
+                    <h3>The Progression Is Real</h3>
+                    <p>The best SREs I've encountered were support engineers who got tired of fighting the same fires. They knew what mattered because they lived in the chaos. They understood failure modes in production systems. They just applied that knowledge differently—toward prevention rather than just response.</p>
+                    
+                    <p>You can't automate what you don't understand. You don't understand systems until you support them. The path forward is knowing when to stop fighting fires and start preventing them.</p>
+                    
+                    <h3>Building Toward Prevention</h3>
+                    <p>My tools aren't random. Alert correlation came from handling cascading alerts. Deployment validation came from investigating preventable deployment failures. API monitoring came from understanding how one service's slowness impacts others.</p>
+                    
+                    <p>Every tool I build is encoded knowledge from production incidents. That's how prevention works—understanding failure modes so deeply that you can automate them away.</p>
+                    
+                    <p>Support teaches you what fails. SRE teaches you how to stop it from failing. The progression is what scales—from managing incidents to managing incident-free systems.</p>
+                `
+            }
+        };
+
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const nav = document.querySelector('nav');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            // Update active nav link based on scroll position
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionId = section.getAttribute('id');
+                if (rect.top <= 100 && rect.bottom > 100) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Blog Modal
+        function openBlog(id) {
+            const blog = blogs[id];
+            const modal = document.getElementById('blogModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = blog.content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBlog() {
+            const modal = document.getElementById('blogModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModal(e) {
+            if (e.target.id === 'blogModal') {
+                closeBlog();
+            }
+        }
+
+       
